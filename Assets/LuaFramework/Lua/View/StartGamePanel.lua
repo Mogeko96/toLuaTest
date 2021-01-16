@@ -18,4 +18,5 @@ function StartGamePanel.OnDestroy()
 	this.btnClose = nil
 	this:Clear()
 	logWarn("OnDestroy---->>>");
+	logError("test");
 end
