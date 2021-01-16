@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 865741547
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 46de98f75be615ac9e0957edeaa89ade
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 0bb4c37c915d5352389eeb93c1a3b27a
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+Assets:
+- Assets/Builds/Fonts/Roboto-Regular.ttf
+- Assets/Builds/Fonts/Roboto-Light.ttf
+Dependencies: []

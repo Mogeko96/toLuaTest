@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 871392326
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 032a48266e8fb7d98975be90948d96de
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 460b4f5d62b6facbccf7c01637df8f00
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Builds/UI/Texture/Btn/diamond.png
+- Assets/Builds/UI/Texture/Btn/new.png
+- Assets/Builds/UI/Texture/Btn/UI.png
+- Assets/Builds/UI/Texture/Btn/square.png
+- Assets/Builds/UI/Texture/Btn/White-Button.psd
+- "Assets/Builds/UI/Texture/Btn/\u91D1\u724C.png"
+- Assets/Builds/UI/Texture/Btn/characters.png
+- Assets/Builds/UI/Texture/Btn/Elements.png
+- Assets/Builds/UI/Texture/Btn/homeUI.png
+- Assets/Builds/UI/Texture/Btn/spikes.png
+- Assets/Builds/UI/Texture/Btn/back.png
+- Assets/Builds/UI/Texture/Btn/UI2.png
+- Assets/Builds/UI/Texture/Btn/soundIcons.png
+Dependencies: []

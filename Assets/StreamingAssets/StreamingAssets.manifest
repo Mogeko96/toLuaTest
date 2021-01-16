@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 1123080132
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: fonts.unity3d
+      Dependencies: {}
+    Info_1:
+      Name: prefabs.unity3d
+      Dependencies:
+        Dependency_0: btn.unity3d
+    Info_2:
+      Name: desktop.unity3d
+      Dependencies:
+        Dependency_0: btn.unity3d
+    Info_3:
+      Name: loading.unity3d
+      Dependencies:
+        Dependency_0: fonts.unity3d
+    Info_4:
+      Name: bg.unity3d
+      Dependencies: {}
+    Info_5:
+      Name: btn.unity3d
+      Dependencies: {}
