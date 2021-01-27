@@ -181,6 +181,7 @@ public static class CustomSettings
 
         _GT(typeof(LongClickButton)),
         _GT(typeof(ChangeImage)),
+        _GT(typeof(Platform)),
     };
 
     public static List<Type> dynamicList = new List<Type>()
@@ -205,6 +206,8 @@ public static class CustomSettings
         typeof(BlendWeights),
         typeof(RenderTexture),
         typeof(Rigidbody),
+
+        typeof(BoxCollider2D),
     };
 
     //重载函数，相同参数个数，相同位置out参数匹配出问题时, 需要强制匹配解决

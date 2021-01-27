@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3695562035
+CRC: 2477386756
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 215da4a69262b089def76dc7a27b0592
+    Hash: 6eac410a31947a71d0417729ae141811
   TypeTreeHash:
     serializedVersion: 2
-    Hash: b9c9a81e08572b9e5c9f9e3e426d426c
+    Hash: 8aa8c267ff4dc9a5a4c21366dae07827
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +23,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 848dbd597124d3045bf68281b20cef64, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 753099ebc5fcb6a42a5dc453e7c4d4b4, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -30,6 +32,7 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
+- Assets/Builds/Prefabs/PWO_Normal.prefab
 - Assets/Builds/Prefabs/Player.prefab
 - Assets/Builds/Prefabs/Platform.prefab
 Dependencies:

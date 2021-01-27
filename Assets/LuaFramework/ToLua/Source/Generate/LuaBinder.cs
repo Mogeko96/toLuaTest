@@ -14,6 +14,7 @@ public static class LuaBinder
 		PlayerInfoWrap.Register(L);
 		LongClickButtonWrap.Register(L);
 		ChangeImageWrap.Register(L);
+		PlatformWrap.Register(L);
 		ViewWrap.Register(L);
 		BaseWrap.Register(L);
 		ManagerWrap.Register(L);
