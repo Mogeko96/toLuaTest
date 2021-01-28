@@ -14,40 +14,40 @@ end
 --初始化平台
 function PlatformSpawner:InitPlatform()
 	for i=1, 6 do
-		local platform = poolMgr:Get("Platform")
 		if i == 1 then
+			local platform = poolMgr:Get("Platform")
 			platform.transform.localPosition = GameSetting.platformInitPos
 			local PlatformCom =  platform:GetComponent("Platform")
-			PlatformCom:Init(5)
+			PlatformCom:Init(3, nil)
 			PlatformCom:StartTimer()
+			this.lastPlatform = platform
 		else
-			platform.transform.localPosition = Vector3.New(this.lastPlatform.transform.localPosition.x + GameSetting.x,
-														this.lastPlatform.transform.localPosition.y + GameSetting.y, 0)
-			platform:GetComponent("Platform"):Init(1)
+			this.SpawnPlatform()
 		end
-		if this.lastPlatform then 
-			this.lastPlatform:GetComponent("Platform").NextPlatform = platform
-		end
-		this.lastPlatform = platform
 	end
 end
 
 --随机生成平台
 function PlatformSpawner.SpawnPlatform()
+	math.randomseed(tostring(os.time()):reverse():sub(1, 6))
 	local index = math.random(0, 1)
 	local list = {}
 	if index == 0 then 
 		index = -1
 	end
-	local count = math.random(2, 4)
+	local count = math.random(1, 3)
 	for i=1, count do
 		local platform, isPlatformWithObstacle = this:SwitchPlatform()
-		if not platform then
-			return
-		end 
+		if not platform then return end 
 		platform.transform.localPosition = Vector3.New(this.lastPlatform.transform.localPosition.x + GameSetting.x*index,
 													this.lastPlatform.transform.localPosition.y + GameSetting.y, 0)
-		platform:GetComponent("Platform"):Init(1)
+		platform:GetComponent("Platform"):Init(1, function()
+			coroutine.start(function( ... )
+				coroutine.wait(2)
+				local poolName = isPlatformWithObstacle and "PWO_Normal" or "Platform"
+				poolMgr:Release(poolName, platform.gameObject)
+			end)
+		end)
 		this.lastPlatform:GetComponent("Platform").NextPlatform = platform
 		this.lastPlatform = platform
 		if isPlatformWithObstacle then 
@@ -61,9 +61,9 @@ function PlatformSpawner.SpawnPlatform()
 	this:SetPlatformWithObstacle(list, index, false)
 end
 
-function PlatformSpawner:SwitchPlatform()
+function PlatformSpawner:SwitchPlatform() 
 	local index = math.random(0, 9)
-	if index < 9 then 
+	if index < 8 then 
 		return poolMgr:Get("Platform"), false
 	else
 		return poolMgr:Get("PWO_Normal"), true

@@ -9,9 +9,9 @@ function GameCamera:Init(mainCamera)
 	event.AddListener("CameraFollow", this.CameraFollow)
 end
 
-function GameCamera.CameraFollow(targetPos)
+function GameCamera.CameraFollow(targetPos, speed)
 	if targetPos then
-		this.mainCamera.transform:DOLocalMove(targetPos - this.offset, 0.1, false)
+		this.mainCamera.transform:DOLocalMove(targetPos - this.offset, speed, false)
 	end
 end
 

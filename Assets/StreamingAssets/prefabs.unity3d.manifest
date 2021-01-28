@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2477386756
+CRC: 4219684691
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6eac410a31947a71d0417729ae141811
+    Hash: 93dfa0ddcad8a5324efea8a2532ad49a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 8aa8c267ff4dc9a5a4c21366dae07827
+    Hash: 615dc1a3cd06ee0e924219b2ab4fb75c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -14,6 +14,8 @@ ClassTypes:
 - Class: 4
   Script: {instanceID: 0}
 - Class: 21
+  Script: {instanceID: 0}
+- Class: 28
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
@@ -35,5 +37,4 @@ Assets:
 - Assets/Builds/Prefabs/PWO_Normal.prefab
 - Assets/Builds/Prefabs/Player.prefab
 - Assets/Builds/Prefabs/Platform.prefab
-Dependencies:
-- F:/ToLuaFramework/Assets/StreamingAssets/btn.unity3d
+Dependencies: []

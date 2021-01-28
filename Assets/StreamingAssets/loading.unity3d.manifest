@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 549544874
+CRC: 792973121
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 821b7d83f68e23cac8f7c299621f5916
+    Hash: 8210d9440d88f26b22cc6118d026e05e
   TypeTreeHash:
     serializedVersion: 2
     Hash: 52685574d4c8eb209e5ca9c8c2ac0d38
@@ -30,8 +30,6 @@ ClassTypes:
 - Class: 224
   Script: {instanceID: 0}
 Assets:
-- Assets/Builds/UI/Texture/Loading/title.psd
-- Assets/Builds/UI/Texture/Loading/glow.png
 - Assets/Builds/UI/Panel/Loading/LoadingPanel.prefab
 Dependencies:
 - F:/ToLuaFramework/Assets/StreamingAssets/fonts.unity3d

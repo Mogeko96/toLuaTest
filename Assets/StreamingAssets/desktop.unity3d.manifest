@@ -1,15 +1,17 @@
 ManifestFileVersion: 0
-CRC: 1183851786
+CRC: 2235866458
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 990565f3d905b71d7b41089347b95910
+    Hash: 03e4f397119b69171aeba04b12a0cb82
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 22544e68d91f6fe86620d27b796e8097
+    Hash: 54e0ce15a1612eee2acd361e77851942
 HashAppended: 0
 ClassTypes:
 - Class: 1
+  Script: {instanceID: 0}
+- Class: 28
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -25,5 +27,4 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Builds/UI/Panel/DeskTop/DeskTopPanel.prefab
-Dependencies:
-- F:/ToLuaFramework/Assets/StreamingAssets/btn.unity3d
+Dependencies: []

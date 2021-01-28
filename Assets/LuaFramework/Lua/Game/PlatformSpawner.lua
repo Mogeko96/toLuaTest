@@ -13,17 +13,16 @@ end
 
 --初始化平台
 function PlatformSpawner:InitPlatform()
-	for i=1, 6 do
-		if i == 1 then
-			local platform = poolMgr:Get("Platform")
-			platform.transform.localPosition = GameSetting.platformInitPos
-			local PlatformCom =  platform:GetComponent("Platform")
-			PlatformCom:Init(5, nil)
-			PlatformCom:StartTimer()
-			this.lastPlatform = platform
-		else
-			this.SpawnPlatform()
-		end
+	local platform = poolMgr:Get("Platform")
+	platform.transform.localPosition = GameSetting.platformInitPos
+	local PlatformCom = platform:GetComponent("Platform")
+	PlatformCom:Init(3, function()
+		this.RecoveryPlatform("Platform", platform.gameObject)
+	end)
+	PlatformCom:StartTimer()
+	this.lastPlatform = platform
+	for i=1, 3 do 
+		this.SpawnPlatform()
 	end
 end
 
@@ -35,33 +34,36 @@ function PlatformSpawner.SpawnPlatform()
 	if index == 0 then 
 		index = -1
 	end
-	local count = math.random(1, 3)
+	local isSpecial = false
+	local count = math.random(2, 3)
 	for i=1, count do
 		local platform, isPlatformWithObstacle = this:SwitchPlatform()
-		if not platform then return end 
+		if not platform then
+			if isPlatformWithObstacle then 
+				isSpecial = true
+			end
+			break
+		end 
 		platform.transform.localPosition = Vector3.New(this.lastPlatform.transform.localPosition.x + GameSetting.x*index,
 													this.lastPlatform.transform.localPosition.y + GameSetting.y, 0)
 		platform:GetComponent("Platform"):Init(1, function()
-			coroutine.start(function( ... )
-				coroutine.wait(2)
-				local poolName = isPlatformWithObstacle and "PWO_Normal" or "Platform"
-				poolMgr:Release(poolName, platform.gameObject)
-			end)
+			local poolName = isPlatformWithObstacle and "PWO_Normal" or "Platform"
+			this.RecoveryPlatform(poolName, platform.gameObject)
 		end)
 		this.lastPlatform:GetComponent("Platform").NextPlatform = platform
 		this.lastPlatform = platform
 		if isPlatformWithObstacle then 
 			if i == count then
-				this:SetPlatformWithObstacle({platform}, index, true)
-			else
-				table.insert(list, platform)
+				isSpecial = true
 			end
+			table.insert(list, platform)
 		end
 	end
-	this:SetPlatformWithObstacle(list, index, false)
+	this:SetPlatformWithObstacle(list, index, isSpecial)
 end
 
-function PlatformSpawner:SwitchPlatform() 
+function PlatformSpawner:SwitchPlatform()
+	math.randomseed(tostring(os.time()):reverse():sub(1, 6))
 	local index = math.random(0, 9)
 	if index < 8 then 
 		return poolMgr:Get("Platform"), false
@@ -70,7 +72,7 @@ function PlatformSpawner:SwitchPlatform()
 	end
 end
 
-function PlatformSpawner:SetPlatformWithObstacle(PlatformList, index, isLast)
+function PlatformSpawner:SetPlatformWithObstacle(PlatformList, index, isSpecial)
 	if next(PlatformList) == nil then
 		return
 	end
@@ -82,17 +84,24 @@ function PlatformSpawner:SetPlatformWithObstacle(PlatformList, index, isLast)
 		left:SetActive(not isRight)
 		local obj = isRight and right or left
 		local showIndex = math.random(0,2)
-		if not isLast then 
+		if isSpecial and i == #PlatformList then 
+			obj.transform:GetChild(0).gameObject:SetActive(false)
+			obj.transform:GetChild(1).gameObject:SetActive(true)
+		else
 			for j=0, 1 do
 				local obstacle = obj.transform:GetChild(j).gameObject
 				obstacle:SetActive(showIndex == 2 and true or j== showIndex)
 				obstacle:GetComponent("BoxCollider2D").enabled = false
 			end
-		else
-			obj.transform:GetChild(0).gameObject:SetActive(false)
-			obj.transform:GetChild(1).gameObject:SetActive(true)
 		end
 	end 
+end
+
+function PlatformSpawner.RecoveryPlatform(poolName, platform)
+	coroutine.start(function()
+		coroutine.wait(1)
+		poolMgr:Release(poolName, platform)
+	end)
 end
 
 function PlatformSpawner:Clear()

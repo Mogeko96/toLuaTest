@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2681553211
+CRC: 3934692817
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -7,19 +7,14 @@ AssetBundleManifest:
       Dependencies: {}
     Info_1:
       Name: prefabs.unity3d
-      Dependencies:
-        Dependency_0: btn.unity3d
+      Dependencies: {}
     Info_2:
       Name: desktop.unity3d
-      Dependencies:
-        Dependency_0: btn.unity3d
+      Dependencies: {}
     Info_3:
       Name: loading.unity3d
       Dependencies:
         Dependency_0: fonts.unity3d
     Info_4:
       Name: bg.unity3d
-      Dependencies: {}
-    Info_5:
-      Name: btn.unity3d
       Dependencies: {}

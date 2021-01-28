@@ -12,37 +12,43 @@ function PlayerController:Init()
 	--注册事件
 	event.AddListener("Left", this.TurnLeft)
 	event.AddListener("Right", this.TurnRight)
+	this.pressTime = os.time()
 end
 
 function PlayerController.TurnLeft()
 	if this.playerInfo.CanJump then
-		this:Jump(-1)
+		this.player.transform.localScale = Vector3.New(-1, 1, 1)
 		event.Brocast("SpawnPlatform")
 		local targetPos = Vector3.New(this.playerInfo.CollisionObj.transform.localPosition.x-GameSetting.x, 
 			this.playerInfo.CollisionObj.transform.localPosition.y+GameSetting.y, 0)
-		event.Brocast("CameraFollow", targetPos)
+		this:Jump(targetPos)
 	end
 end
 
 function PlayerController.TurnRight()
 	if this.playerInfo.CanJump then
-		this:Jump(1)
+		this.player.transform.localScale = Vector3.New(1, 1, 1)
 		event.Brocast("SpawnPlatform")
 		local targetPos = Vector3.New(this.playerInfo.CollisionObj.transform.localPosition.x+GameSetting.x, 
 			this.playerInfo.CollisionObj.transform.localPosition.y+GameSetting.y, 0)
-		event.Brocast("CameraFollow", targetPos)
+		this:Jump(targetPos)
 	end
 end
 
-function PlayerController:Jump(index)
-	this.player.transform.localScale = Vector3.New(index, 1, 1)
-	this.playerInfo.transform:DOMoveY(this.playerInfo.CollisionObj.transform.localPosition.y+GameSetting.y+0.8, 0.1)
-	this.playerInfo.transform:DOMoveX(this.playerInfo.CollisionObj.transform.localPosition.x+index*GameSetting.x, 0.15)
+function PlayerController:Jump(targetPos)
+	local nowPressTime = os.time()
+	local speed = nowPressTime - this.pressTime >= 1 and GameSetting.slowSpeed or GameSetting.quickSpeed
+	this.pressTime = nowPressTime
+
+	this.playerInfo.transform:DOMoveY(targetPos.y+0.8, speed-0.05)
+	this.playerInfo.transform:DOMoveX(targetPos.x, speed)
+	event.Brocast("CameraFollow", targetPos, speed)
 end
 
 function PlayerController:Clear()
 	this.player = nil
 	this.playerInfo = nil
+	this.pressTime = nil
 	event.RemoveListener("Left", this.TurnLeft)
 	event.RemoveListener("Right", this.TurnRight)
 end

@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &738188761
+--- !u!1001 &751945257
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -215,11 +215,6 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1865076892}
-    - target: {fileID: 223797887556867766, guid: 784a5e523f32397499a1e858b6a667ac,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 1919055857
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 784a5e523f32397499a1e858b6a667ac, type: 2}
   m_IsPrefabParent: 0

@@ -7,6 +7,7 @@ public class PlayerInfo : MonoBehaviour {
     private bool canJump = false;
     private GameObject collisionObj = null;
     public bool CanJump{get{return canJump;}}
+    private bool trigger = true;
 
     public GameObject CollisionObj { get { return collisionObj; } }
 
@@ -14,6 +15,12 @@ public class PlayerInfo : MonoBehaviour {
     {
         canJump = true;
         collisionObj = collision.gameObject;
+        if (trigger)
+        {
+            Util.CallMethod("GameHandle", "PlayerOnGrand");
+            trigger = false;
+        }
+        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

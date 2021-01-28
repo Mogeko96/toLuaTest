@@ -51,6 +51,7 @@ end
 -- end
 
 function OpenPanel(panelName, data)
+	logError("OpenPanel"..panelName)
 	local ctrl = CtrlManager.GetCtrl(panelName);
     if ctrl ~= nil then
         ctrl:Awake(data);

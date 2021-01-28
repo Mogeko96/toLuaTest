@@ -5,6 +5,11 @@ local GameCamera = require "Game/GameCamera"
 GameHandle = {};
 this = GameHandle;
 
+this.Property = {
+	title = 0,
+	playerSkin = 0,
+}
+
 function this.Awake(gameObject)
 	OpenPanel(PanelNames.DeskTop)
 	--平台初始化
@@ -18,7 +23,12 @@ function this.Start()
 	
 end
 
+function this.PlayerOnGrand()
+	logError("玩家第一次碰到平台")
+end
+
 function this.OnDestroy()
+	this.Property = nil
 	PlatformSpawner:Clear()
 	PlayerController:Clear()
 	GameCamera:Clear()
