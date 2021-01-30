@@ -52,10 +52,14 @@ function PlatformSpawner.SpawnPlatform()
 		end)
 		this.lastPlatform:GetComponent("Platform").NextPlatform = platform
 		this.lastPlatform = platform
-		if isPlatformWithObstacle then 
-			if i == count then
-				isSpecial = true
+		if i == count then 
+			if isPlatformWithObstacle then isSpecial = true end
+			if math.random(0, 1) == 0 then		
+				this:CreateFakePath(platform, -index)
 			end
+		end
+
+		if isPlatformWithObstacle then 
 			table.insert(list, platform)
 		end
 	end
@@ -95,6 +99,22 @@ function PlatformSpawner:SetPlatformWithObstacle(PlatformList, index, isSpecial)
 			end
 		end
 	end 
+end
+
+function PlatformSpawner:CreateFakePath(obj, index)
+	local count = math.random(1, 9)
+	local lastPlatform = obj
+	for i=1, count do 
+		local platform, isPlatformWithObstacle = this:SwitchPlatform()
+		platform.transform.localPosition = Vector3.New(lastPlatform.transform.localPosition.x + GameSetting.x*index,
+														lastPlatform.transform.localPosition.y + GameSetting.y, 0)
+		platform:GetComponent("Platform"):Init(1, function()
+			local poolName = isPlatformWithObstacle and "PWO_Normal" or "Platform"
+			this.RecoveryPlatform(poolName, platform.gameObject)
+		end)
+		lastPlatform:GetComponent("Platform").NextPlatform = platform
+		lastPlatform = platform
+	end
 end
 
 function PlatformSpawner.RecoveryPlatform(poolName, platform)

@@ -11,7 +11,7 @@ public class PlatformWrap
 		L.RegFunction("StartTimer", StartTimer);
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
-		L.RegVar("NextPlatform", null, set_NextPlatform);
+		L.RegVar("NextPlatform", get_NextPlatform, set_NextPlatform);
 		L.EndClass();
 	}
 
@@ -64,6 +64,25 @@ public class PlatformWrap
 		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_NextPlatform(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Platform obj = (Platform)o;
+			UnityEngine.GameObject ret = obj.NextPlatform;
+			ToLua.PushSealed(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index NextPlatform on a nil value");
 		}
 	}
 

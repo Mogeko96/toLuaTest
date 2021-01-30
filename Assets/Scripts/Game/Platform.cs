@@ -11,7 +11,7 @@ public class Platform : MonoBehaviour {
     private GameObject nextPlatform = null;
     private LuaFunction luaFunc = null;
 
-    public GameObject NextPlatform {set { nextPlatform = value; } }
+    public GameObject NextPlatform { set { nextPlatform = value; } get { return nextPlatform;} }
 
     private float timer = 0;
 

@@ -17,7 +17,7 @@ end
 
 function PlayerController.TurnLeft()
 	if this.playerInfo.CanJump then
-		this.player.transform.localScale = Vector3.New(-1, 1, 1)
+		this:SetPlayerDirection(-1)
 		event.Brocast("SpawnPlatform")
 		local targetPos = Vector3.New(this.playerInfo.CollisionObj.transform.localPosition.x-GameSetting.x, 
 			this.playerInfo.CollisionObj.transform.localPosition.y+GameSetting.y, 0)
@@ -27,7 +27,7 @@ end
 
 function PlayerController.TurnRight()
 	if this.playerInfo.CanJump then
-		this.player.transform.localScale = Vector3.New(1, 1, 1)
+		this:SetPlayerDirection(1)
 		event.Brocast("SpawnPlatform")
 		local targetPos = Vector3.New(this.playerInfo.CollisionObj.transform.localPosition.x+GameSetting.x, 
 			this.playerInfo.CollisionObj.transform.localPosition.y+GameSetting.y, 0)
@@ -43,6 +43,14 @@ function PlayerController:Jump(targetPos)
 	this.playerInfo.transform:DOMoveY(targetPos.y+0.8, speed-0.05)
 	this.playerInfo.transform:DOMoveX(targetPos.x, speed)
 	event.Brocast("CameraFollow", targetPos, speed)
+end
+
+function PlayerController:SetPlayerDirection(index)
+	if not index then
+		local nextPlatform = this.playerInfo.CollisionObj:GetComponent("Platform").NextPlatform
+		index = nextPlatform.transform.localPosition.x >= 0 and 1 or -1
+	end
+	this.player.transform.localScale = Vector3.New(index, 1, 1)
 end
 
 function PlayerController:Clear()

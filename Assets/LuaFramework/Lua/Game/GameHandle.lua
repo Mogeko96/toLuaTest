@@ -25,6 +25,7 @@ end
 
 function this.PlayerOnGrand()
 	logError("玩家第一次碰到平台")
+	PlayerController:SetPlayerDirection()
 end
 
 function this.OnDestroy()
